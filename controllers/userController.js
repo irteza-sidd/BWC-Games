@@ -3,7 +3,7 @@ const bcrypt = require("bcryptjs");
 
 const signupUser = async (req, res) => {
   try {
-    const { username, email, password } = req.body;
+    const { name, email, password } = req.body;
 
     const existingUser = await User.findOne({ email });
     if (existingUser) {
@@ -15,7 +15,7 @@ const signupUser = async (req, res) => {
       const hashedPassword = await bcrypt.hash(password, salt); //HASH PASSWORD
 
       const user = await User.create({
-        username,
+        name,
         email,
         password: hashedPassword,
       });
