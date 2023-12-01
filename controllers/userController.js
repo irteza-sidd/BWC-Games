@@ -18,7 +18,7 @@ const signupUser = async (req, res) => {
         username,
         email,
         password: hashedPassword,
-      }).select("username email");
+      });
 
       return res.status(201).json({
         success: true,
@@ -36,7 +36,7 @@ const loginUser = async (req, res) => {
   try {
     const { email, password } = req.body;
 
-    const user = await User.findOne(email).select("username email");
+    const user = await User.findOne(email);
     if (user) {
       const matchPassword = await bcrypt.compare(password, user.password);
       if (matchPassword) {
