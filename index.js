@@ -18,6 +18,10 @@ const corsConfig = {
   optionsSuccessStatus: 204,
 };
 
+app.get("/", (req, res) => {
+  res.status(200).json("Application is running");
+});
+
 app.use(cors(corsConfig));
 app.options("", cors(corsConfig));
 
