@@ -23,7 +23,7 @@ const signupUser = async (req, res) => {
       return res.status(201).json({
         success: true,
         message: "User Registered Successfully",
-        user: userWithoutPassword,
+        user,
       });
     }
   } catch (error) {
@@ -43,7 +43,7 @@ const loginUser = async (req, res) => {
         return res.status(200).json({
           success: true,
           message: "Login Successfull",
-          user: userWithoutPassword,
+          user,
         });
       } else {
         return res
@@ -53,7 +53,7 @@ const loginUser = async (req, res) => {
     } else {
       return res
         .status(401)
-        .json({ success: false, message: "Inavlid Credentials" });
+        .json({ success: false, message: "User don't exists" });
     }
   } catch (error) {}
 };
