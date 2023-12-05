@@ -23,7 +23,7 @@ app.get("/", (req, res) => {
 
 app.options("", cors(corsConfig));
 
-app.use("api/v1/user/", userRouter);
+app.use("api/v1/user", userRouter);
 
 app.listen(process.env.PORT || 3000, () => {
   console.log("App is running");
