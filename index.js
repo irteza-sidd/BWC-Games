@@ -5,9 +5,7 @@ const connectToMongo = require("./config/db");
 
 const app = express();
 
-{
-  connectToMongo();
-}
+connectToMongo();
 
 app.use(express.json());
 
@@ -17,12 +15,12 @@ const corsConfig = {
   credentials: true,
   optionsSuccessStatus: 204,
 };
+app.use(cors(corsConfig));
 
 app.get("/", (req, res) => {
   res.status(200).json("Application is running");
 });
 
-app.use(cors(corsConfig));
 app.options("", cors(corsConfig));
 
 app.use("/v1/api/user", userRouter);

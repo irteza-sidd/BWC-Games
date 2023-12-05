@@ -54,7 +54,25 @@ const loginUser = async (req, res) => {
         .status(401)
         .json({ success: false, message: "User don't exists" });
     }
-  } catch (error) {}
+  } catch (error) {
+    console.log(error);
+  }
 };
 
-module.exports = { signupUser, loginUser };
+const getUser = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const user = await User.findById(id);
+    if (user) {
+      return res.status(200).json({ success: true, user });
+    } else {
+      return res
+        .status(401)
+        .json({ success: false, message: "User not found" });
+    }
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+module.exports = { signupUser, loginUser, getUser };
